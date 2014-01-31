@@ -1,0 +1,13 @@
+/**
+ * Stylesheet for SDS Theme Options
+ */
+
+/* "One-Click" Child Themes */
+.sds-themes-child-themes-checkbox {
+	margin: 0 0 10px;
+}
+
+ul.sds-child-themes {
+	padding-left: 2em;
+	list-style: disc;
+}

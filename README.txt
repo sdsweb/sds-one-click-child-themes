@@ -1,4 +1,4 @@
-=== "One-Click" Child themes for Slocum Themes ===
+=== One-Click Child themes for Slocum Themes ===
 Contributors: slocumstudio
 Tags: child themes, themes, one-click child themes, theme options panel
 Requires at least: 3.5
