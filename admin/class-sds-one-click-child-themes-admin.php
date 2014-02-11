@@ -142,13 +142,13 @@ class SDS_One_Click_Child_Themes_Admin {
 
 			// Make sure we have a valid theme name
 			if ( empty( $child_theme_name ) )
-				add_settings_error( 'sds_theme_options', 'child-theme-name-invalid', __( 'Please enter a valid child theme name.', $this->plugin_slug ) );
+				add_settings_error( 'sds_theme_options', 'sds_theme_options-child-theme-name-invalid', __( 'Please enter a valid child theme name.', $this->plugin_slug ) );
 			// Make sure the requested child theme does not already exist
 			else if ( file_exists( $theme_root . $child_theme_name ) )
-				add_settings_error( 'sds_theme_options', 'child-theme-exists', __( 'It appears that a child theme with that name already exists. Please try again with a different child theme name.', $this->plugin_slug ) );
+				add_settings_error( 'sds_theme_options', 'sds_theme_options-child-theme-exists', __( 'It appears that a child theme with that name already exists. Please try again with a different child theme name.', $this->plugin_slug ) );
 			// Make sure child theme creation didn't fail
 			else if ( ! $sds_themes->create_child_theme( $child_theme_directory, $child_theme_stylesheet_header, $theme_root ) )
-				add_settings_error( 'sds_theme_options', 'child-theme-creation-failed', __( 'There was a problem creating the child theme. Please check your server permissions.', $this->plugin_slug ) );
+				add_settings_error( 'sds_theme_options', 'sds_theme_options-child-theme-creation-failed', __( 'There was a problem creating the child theme. Please check your server permissions.', $this->plugin_slug ) );
 			// Child theme was created successfully
 			else {
 				// Multisite
@@ -159,26 +159,26 @@ class SDS_One_Click_Child_Themes_Admin {
 						if( $sds_themes->network_enable_child_theme( $child_theme_name ) ) {
 							// Activate child theme
 							if( $sds_themes->activate_child_theme( $child_theme_name ) )
-								add_settings_error( 'sds_theme_options', 'child-theme-activation-success', sprintf( __( 'New theme activated. <a href="%s">Visit site</a> or <a href="%s">edit child theme</a>.', $this->plugin_slug ), home_url( '/' ), admin_url( 'theme-editor.php?theme=' . urlencode( $child_theme_name ) ) ), 'updated' );
+								add_settings_error( 'sds_theme_options', 'sds_theme_options-child-theme-activation-success', sprintf( __( 'New theme activated. <a href="%s">Visit site</a> or <a href="%s">edit child theme</a>.', $this->plugin_slug ), home_url( '/' ), admin_url( 'theme-editor.php?theme=' . urlencode( $child_theme_name ) ) ), 'updated' );
 							// Activation failed
 							else
-								add_settings_error( 'sds_theme_options', 'child-theme-activation-failed', sprintf( __( 'Child theme created successfully but there was a problem activating it. Please <a href="%s">try again</a>', $this->plugin_slug ), wp_nonce_url( admin_url( 'themes.php?action=activate&amp;stylesheet=' . urlencode( $child_theme_name ) ), 'switch-theme_' . $child_theme_name ) ), 'error' );
+								add_settings_error( 'sds_theme_options', 'sds_theme_options-child-theme-activation-failed', sprintf( __( 'Child theme created successfully but there was a problem activating it. Please <a href="%s">try again</a>', $this->plugin_slug ), wp_nonce_url( admin_url( 'themes.php?action=activate&amp;stylesheet=' . urlencode( $child_theme_name ) ), 'switch-theme_' . $child_theme_name ) ), 'error' );
 						}
 						// Network enabling failed
 						else
-							add_settings_error( 'sds_theme_options', 'child-theme-network-enable-failed', __( 'Child theme created successfully but there was a problem enabling it on the network. Please contact your network administrator.', $this->plugin_slug ), 'error' );
+							add_settings_error( 'sds_theme_options', 'sds_theme_options-child-theme-network-enable-failed', __( 'Child theme created successfully but there was a problem enabling it on the network. Please contact your network administrator.', $this->plugin_slug ), 'error' );
 					}
 					// Enable theme across network
 					else if ( isset( $input['child_theme']['network_enable'] ) ) {
 						// Enable it across the network
 						if( $sds_themes->network_enable_child_theme( $child_theme_name ) )
-							add_settings_error( 'sds_theme_options', 'child-theme-network-enable-success', sprintf( __( 'Child theme created successfully and enabled across the network. <a href="%s">Activate</a> your child theme.', $this->plugin_slug ), wp_nonce_url( admin_url( 'themes.php?action=activate&amp;stylesheet=' . urlencode( $child_theme_name ) ), 'switch-theme_' . $child_theme_name ) ), 'updated' );
+							add_settings_error( 'sds_theme_options', 'sds_theme_options-child-theme-network-enable-success', sprintf( __( 'Child theme created successfully and enabled across the network. <a href="%s">Activate</a> your child theme.', $this->plugin_slug ), wp_nonce_url( admin_url( 'themes.php?action=activate&amp;stylesheet=' . urlencode( $child_theme_name ) ), 'switch-theme_' . $child_theme_name ) ), 'updated' );
 						// Network enabling failed
 						else
-							add_settings_error( 'sds_theme_options', 'child-theme-network-enable-failed', __( 'Child theme created successfully but there was a problem enabling it on the network. Please contact your network administrator.', $this->plugin_slug ), 'error' );
+							add_settings_error( 'sds_theme_options', 'sds_theme_options-child-theme-network-enable-failed', __( 'Child theme created successfully but there was a problem enabling it on the network. Please contact your network administrator.', $this->plugin_slug ), 'error' );
 					}
 					else
-						add_settings_error( 'sds_theme_options', 'child-theme-creation-success', __( 'Child theme created successfully. Please network enable your child theme.', $this->plugin_slug ), 'updated' );
+						add_settings_error( 'sds_theme_options', 'sds_theme_options-child-theme-creation-success', __( 'Child theme created successfully. Please network enable your child theme.', $this->plugin_slug ), 'updated' );
 				}
 				// Non-multisite
 				else {
@@ -186,12 +186,12 @@ class SDS_One_Click_Child_Themes_Admin {
 					if ( isset( $input['child_theme']['activate'] ) ) {
 						// Activate child theme
 						if( $sds_themes->activate_child_theme( $child_theme_name ) )
-							add_settings_error( 'sds_theme_options', 'child-theme-activation-success', sprintf( __( 'New theme activated. <a href="%s">Visit site</a> or <a href="%s">edit child theme</a>.', $this->plugin_slug ), home_url( '/' ), admin_url( 'theme-editor.php?theme=' . urlencode( $child_theme_name ) ) ), 'updated' );
+							add_settings_error( 'sds_theme_options', 'sds_theme_options-child-theme-activation-success', sprintf( __( 'New theme activated. <a href="%s">Visit site</a> or <a href="%s">edit child theme</a>.', $this->plugin_slug ), home_url( '/' ), admin_url( 'theme-editor.php?theme=' . urlencode( $child_theme_name ) ) ), 'updated' );
 						else
-							add_settings_error( 'sds_theme_options', 'child-theme-activation-failed', sprintf( __( 'Child theme created successfully but there was a problem activating it. Please try againNew theme activated. <a href="%s">Visit site</a> or <a href="%s">edit child theme</a>.', $this->plugin_slug ), home_url( '/' ), admin_url( 'theme-editor.php?theme=' . urlencode( $child_theme_name ) ) ), 'updated' );
+							add_settings_error( 'sds_theme_options', 'sds_theme_options-child-theme-activation-failed', sprintf( __( 'Child theme created successfully but there was a problem activating it. Please try againNew theme activated. <a href="%s">Visit site</a> or <a href="%s">edit child theme</a>.', $this->plugin_slug ), home_url( '/' ), admin_url( 'theme-editor.php?theme=' . urlencode( $child_theme_name ) ) ), 'updated' );
 					}
 					else
-						add_settings_error( 'sds_theme_options', 'child-theme-creation-success', sprintf( __( 'Child theme created successfully. <a href="%s">Activate</a> your child theme.', $this->plugin_slug ), wp_nonce_url( admin_url( 'themes.php?action=activate&amp;stylesheet=' . urlencode( $child_theme_name ) ), 'switch-theme_' . $child_theme_name ) ), 'updated' );
+						add_settings_error( 'sds_theme_options', 'sds_theme_options-child-theme-creation-success', sprintf( __( 'Child theme created successfully. <a href="%s">Activate</a> your child theme.', $this->plugin_slug ), wp_nonce_url( admin_url( 'themes.php?action=activate&amp;stylesheet=' . urlencode( $child_theme_name ) ), 'switch-theme_' . $child_theme_name ) ), 'updated' );
 				}
 			}
 		}

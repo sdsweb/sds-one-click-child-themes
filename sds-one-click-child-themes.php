@@ -3,7 +3,7 @@
  * Plugin Name:       One-Click Child Themes for Slocum Themes
  * Plugin URI:        http://slocumstudio.com/
  * Description:       Add "One-Click" Child Theme functionality to your Slocum Themes Options Panel.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Slocum Studio
  * Author URI:        http://slocumstudio.com/
  * Text Domain:       sds-occt
