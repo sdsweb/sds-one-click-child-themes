@@ -129,6 +129,11 @@ class SDS_One_Click_Child_Themes_Admin {
 	 */
 	public function sanitize_option_sds_theme_options( $input ) {
 		$sds_themes = SDS_Themes::get_instance();
+
+		// Load admin functionality assets if necessary
+		if ( ! function_exists( 'add_settings_error' ) )
+			require_once( ABSPATH . 'wp-admin/includes/admin.php' );
+
 		/**
 		 * "One-Click" Child Themes
 		 */
@@ -195,6 +200,10 @@ class SDS_One_Click_Child_Themes_Admin {
 				}
 			}
 		}
+
+		// Remove child theme data from option
+		unset( $input['child_theme'] );
+		unset( $input['create_child_theme'] );
 
 		return $input;
 	}
